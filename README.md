@@ -18,9 +18,9 @@ The end product is a jupyter notebook showing these steps and the logic behind t
 
 __File descriptions:___ 
 
-All of my python code is presented in the 'CNN_Breast_Cancer.ipybn' file. This file is a notebook which also shows relevant visualisations and commentary.
+All of my python code is presented in the 'CNN project - final version.ipynb' file. This file is a notebook which also shows relevant visualisations and commentary.
 
-The data used is taken from the kaggle page here: https://www.kaggle.com/datasets/paultimothymooney/breast-histopathology-images. The data consists of images, each showing a 50 x 50 pixel region from a breast scan. There are two options for accessing it:
+The data used is taken from the kaggle page here: https://www.kaggle.com/datasets/paultimothymooney/breast-histopathology-images. The data consists of images, each showing a 50 x 50 pixel region from a breast scan. The original data consists of nearly 300,000 images and is around 4Gb in size. This is far too big for my machine to process in an acceptable amount of time, and so I created a much smaller smaple data set that would allow me to learn and compelte this project. This sample data is saved in this repository and there are two options for accessing it:
 
 - I have created a folder called 'Sample_data'. This contains two subfolders (one for each pseudopatient), each of which also contains two subfolders(one for cancerous images and one for non-cancerous images), in which you can find the .png image files.
 - The other option is to download the 'Data' zip folder and extract the files onto your machine.
@@ -28,6 +28,10 @@ The data used is taken from the kaggle page here: https://www.kaggle.com/dataset
 __Usage instructions:__
 
 If wish to run the notebook yourself this should be fairly simple. You will need to download the dataset to your own machine. You will then need to change the root_directory given in the notebook to the location where you save the data. All that's left is to hit 'run all' in the jupyter notebook. On my machine the whole notebook takes maybe two or three minutes to run.
+
+Alternatively, if you just want to see my code and commentary you can just read through 'CNN project - final version.ipynb'.
+
+One thing to note is that if you chose to run the code you are unlikely to get exactly the same results as me. This is due to some randm steps in the deep learning process, as well as randomness introduced by the data augmentation process. I have used random_state arguments when defining training, test and validation data nin an effort to minimise variation - but this doesn't eliminate all randomness.
 
 __Packages used:__ There are quite a few packages used in this project.
 
@@ -54,7 +58,13 @@ keras.preprocessing.image.ImageDataGenerator
 
 __Model performance and difficulties faced:__
 
+In the notebook I run 9 iterations of the model, starting with a very simple model and ending with something more complex. My final model achieves an accuracy score of around 85% when predicting the labels in the test data. In the notebook I link to an article showing that the accuracy of models actually in clinical use for diagnosing some other types of cancer varies from around 87% - 93%, so I think my results are quite good though more work would be needed to make the model reliable in a real world context.
 
+I'm also happy with the hehaviour of the loss and validation loss during the process of training the final model. In early versions of my model the loss would fall sharply in early epochs and then plateau, while in some models the validation loss would increase after several epochs. In the final version of the model both loss and validation loss fall quite consistently across epochs, which suggests that the neural network is actually learning. 
+
+While this project did go smoother than anticipated, there were some real challenges. The first of these was the data augmentation process and the fact that I wanted it to create data that could both be plotted visually and could be passed to the model for training. It took a littlw while for me to realise that due to the output that data augmentation gives I would need separate object for plotting the augmented images vidually and for passing to the model. 
+
+Beyond that the main challenge was trying to get an idea of how the choice of layers and hyperparameters in my model related to my data. As this is my first time working with image data I still needed to build intuition around things like: how complex is this image? How many filters are needed to pick out the key patterns? Do I need to feed in the data in batches? It was also interesting to consider how the evaluation metrics related to the aim of model and how givent that my objective was to create something that can classify new data, I'd evaluate it very differently to a modelt hat is meant to explain features of the current data.
 
 __Contact information:__ The maintainer of this project is me - Laurence Durham - contactable at laurence.durham89@gmail.com
 
