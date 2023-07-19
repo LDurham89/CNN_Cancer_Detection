@@ -8,21 +8,26 @@ The task I chose was to build a model that can predict if images show cancerous 
   
 In this notebook I will explore the data, prepare it for analysis and build a model. Building CNN's and tuning parameters is a process that requires logic but also some trial and error to find the model that's most appropriate to the data.
 
-There are X stages to this project:
+There are 3 general stages to this project:
 
 - Read in and explore the data
 - Prepare it for analysis
 - Test several models to find one that can reliably be generalised to unseen images
 
-The end product is a jupyter notebook showing these steps and the logic behind the process, as well a a pickle file of my chosen model.
+The end product is a jupyter notebook showing these steps and the logic behind the process.
 
 __File descriptions:___ 
 
-This project will work with data on Invasive Ductal Carcinoma (IDC) -a form of breast cancer- taken from the kaggle page here: https://www.kaggle.com/datasets/paultimothymooney/breast-histopathology-images. The data consists of images, each showing a 50 x 50 pixel region from a breast scan. I will process the data for analysis and then build a model that can distinguish cancerous sub-samples from non-cancerous ones.
+All of my python code is presented in the 'CNN_Breast_Cancer.ipybn' file. This file is a notebook which also shows relevant visualisations and commentary.
+
+The data used is taken from the kaggle page here: https://www.kaggle.com/datasets/paultimothymooney/breast-histopathology-images. The data consists of images, each showing a 50 x 50 pixel region from a breast scan. There are two options for accessing it:
+
+- I have created a folder called 'Sample_data'. This contains two subfolders (one for each pseudopatient), each of which also contains two subfolders(one for cancerous images and one for non-cancerous images), in which you can find the .png image files.
+- The other option is to download the 'Data' zip folder and extract the files onto your machine.
 
 __Usage instructions:__
 
-If wish to run the notebook yourself this should be fairly simple. You will need to download thr dataset to your own machine. You will then need to change the root_directory given in the notebook to the location where you save the data. All that's left is to hit 'run all' in the jupyter notebook. On my machine the whole notebook takes maybe two or three minutes to run.
+If wish to run the notebook yourself this should be fairly simple. You will need to download the dataset to your own machine. You will then need to change the root_directory given in the notebook to the location where you save the data. All that's left is to hit 'run all' in the jupyter notebook. On my machine the whole notebook takes maybe two or three minutes to run.
 
 __Packages used:__ There are quite a few packages used in this project.
 
@@ -46,8 +51,6 @@ tensorflow.keras.models.Sequential
 tensorflow.keras.layers: Dense, Dropout, Conv2D, MaxPool2D & Flatten
 tensorflow.keras.preprocessing.image
 keras.preprocessing.image.ImageDataGenerator 
-
-pickle: saves the trained model as a pickle file
 
 __Model performance and difficulties faced:__
 
