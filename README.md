@@ -18,7 +18,7 @@ The end product is a jupyter notebook showing these steps and the logic behind t
 
 __File descriptions:___ 
 
-All of my python code is presented in the 'CNN project - final version.ipynb' file. This file is a notebook which also shows relevant visualisations and commentary.
+All of my python code is presented in the 'CNN project - final version.ipynb' file (available here: https://github.com/LDurham89/CNN_Cancer_Detection/blob/main/CNN%20project%20-%20final%20version.ipynb). This file is a notebook which also shows relevant visualisations and commentary.
 
 One fyi - and an apology - there are some commands that produce long lists which on my machine were confined to a small window whihc was easy to scroll past. However in the notebook presented here these lists are produced in full. As such you will need to do a lot of scrolling. If this is too tedious, then you might want to download the notebook so you can skip through. 
 
