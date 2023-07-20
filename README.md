@@ -20,10 +20,8 @@ __File descriptions:___
 
 All of my python code is presented in the 'CNN project - final version.ipynb' file. This file is a notebook which also shows relevant visualisations and commentary.
 
-The data used is taken from the kaggle page here: https://www.kaggle.com/datasets/paultimothymooney/breast-histopathology-images. The data consists of images, each showing a 50 x 50 pixel region from a breast scan. The original data consists of nearly 300,000 images and is around 4Gb in size. This is far too big for my machine to process in an acceptable amount of time, and so I created a much smaller smaple data set that would allow me to learn and compelte this project. This sample data is saved in this repository and there are two options for accessing it:
+The data used is taken from the kaggle page here: https://www.kaggle.com/datasets/paultimothymooney/breast-histopathology-images. The data consists of images, each showing a 50 x 50 pixel region from a breast scan. The original data consists of nearly 300,000 images and is around 4Gb in size. This is far too big for my machine to process in an acceptable amount of time, and so I created a much smaller smaple data set that would allow me to learn and compelte this project. This sample data is saved in this repository in a folder called 'Sample_data'. This contains two subfolders (one for each pseudopatient), each of which also contains two subfolders(one for cancerous images and one for non-cancerous images), in which you can find the .png image files. Probably the best way to access the data is navigate to the root of the repository, then click on the green 'code' button, and download all the file files in the repo to your machine.
 
-- I have created a folder called 'Sample_data'. This contains two subfolders (one for each pseudopatient), each of which also contains two subfolders(one for cancerous images and one for non-cancerous images), in which you can find the .png image files.
-- The other option is to download the 'Data' zip folder and extract the files onto your machine.
 
 __Usage instructions:__
 
@@ -37,24 +35,25 @@ __Packages used:__ There are quite a few packages used in this project.
 
 This project uses packages for a wide variety of tasks.
 
-First are some of the most common general data processing packages, plus re which is useful for editting data:
+First are some of the most common general data processing packages:
 
-os
-pandas 
-seaborn 
-matplotlib.pyplot
-numpy
-PIL.Image
-re
+- pandas 
+- seaborn 
+- matplotlib.pyplot
+- numpy
 
-sklearn.model_selection.train_test_split
+Then some packages are used for more specific data analysis and peprocessing tasks:
 
-tensorflow
-tensorflow.keras.layers
-tensorflow.keras.models.Sequential
-tensorflow.keras.layers: Dense, Dropout, Conv2D, MaxPool2D & Flatten
-tensorflow.keras.preprocessing.image
-keras.preprocessing.image.ImageDataGenerator 
+- os: I use the .walk() method to navigate through the data folders when reading in the images
+- PIL.Image: this is crucial for many of the manipulations done on the image data
+- re: regular expressions, used for extracting data from the list of file paths
+
+The last group of packages were used for the preparing the model and creating the data to pass to it:
+- sklearn.model_selection.train_test_split: This is used to create the training, test and validation data
+- tensorflow.keras.layers: this contains the augmentations that I apply to the data
+- tensorflow.keras.models.Sequential: this creates the model object and provides a method for adding the various layers
+- tensorflow.keras.layers: Dense, Dropout, Conv2D, MaxPool2D & Flatten - these are the types of layers used in the CNN model to extract information from the data, put it in a format that the neural network can read and then analyse
+- tensorflow.keras.preprocessing.image - this contains the method used for converting arrays back into images after doing data augmentation.
 
 __Model performance and difficulties faced:__
 
@@ -69,3 +68,16 @@ Beyond that the main challenge was trying to get an idea of how the choice of la
 __Contact information:__ The maintainer of this project is me - Laurence Durham - contactable at laurence.durham89@gmail.com
 
 __Necessary acknowledgments:__ This project presented several interesting challenges and made we question several times what was happening 'behind the scenes' in my code. As a result I drew on a few online resources to help get my code right and to interpret my model and its performance better.
+
+Firstly, this stackoverflow post was very helpful understanding the os.walk() method, as I hadn't previously worked with data spread across various folders:
+https://stackoverflow.com/questions/25868109/read-all-files-in-directory-and-subdirectories-in-python
+
+When checking the dimensions of my images I drew a total blank on list comprehension, so this article was useful for that:
+https://stackoverflow.com/questions/51761784/how-to-delete-list-elements-based-on-condition-in-python
+
+When it came to data augmentation, this documentation helped with understanding what options were available:
+https://www.tensorflow.org/api_docs/python/tf/keras/layers
+
+These and Udacity GPT were the maim sources for code, however in terms of understanding methods and how the neural network functions I found useful sources that I have referred to in the notebook.
+
+
