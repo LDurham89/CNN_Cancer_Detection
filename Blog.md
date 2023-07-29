@@ -1,4 +1,4 @@
-# This is a title
+# Using neural networks for medical diagnosis
 
 ## Introduction
 The Capstone project due as part of Udacity's Data Science Nanodegree allows students to design their own project and produce a notebook and blog post to go with it.
