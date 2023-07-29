@@ -28,6 +28,14 @@ I will then run several models to find the best parameters and model architectur
 Why accuracy, what else could I have used?
 
 ## Model performance
+To evaluate these it would be tempting to present a chart showing the accuracy scores of each model, however this would miss the relationship between the training and validation data across across the model. While the accuracy scores have improved most (but not all) times that we've added complexity to the model the behaviour of the validation data has not been great in many of the models. In many models tha validation loss has plateaued very early on, while the loss on the training data has continued to fall, which suggests that the model is likely to be overfitting. In other models the validation loss and accuracy have been very volatile between epochs, or even increased after a certain point - again suggesting that the model is not to predict new data very well (check this).
+Personally I am quite happy with model 9. It has an accuracy score of 0.85, meaning that it was able to predict 85% of labels in the test data correctly. Furthermore the loss and accuracy performance looks good, with both the validation and training loss decreasing across epochs and the validation loss plateauing much later than in other models - albeit the model was still probably trained for too many epochs. Conversely both training and validation accuracy scores increase relatively consistently - with the same caveat about the number of epochs.
+If we compare the performance of model 9 to some of other decent models, we can see that the validation loss / accuracy is nowhere near as volatile as for model 8, while it plateaus maybe 10 epochs later than model 7.
+In terms of application of the model, a quick googling brought up this article evaluating the performance of existing AI tools used to identify certain cancers.
+https://www.frontiersin.org/articles/10.3389/fmed.2022.1018937/full#:~:text=The%20sensitivity%20and%20specificity%20of,99.1)%20(Supplementary%20Figures).
 
+Although they use the language of sensitivity and specificity rather than accuracy, the typical percentage scores they find are somewhere between the high 80's and low 90's. The result for model 9 is comparable to this, suggesting that if I were to apply it to the full data set the result might be clinically useful.
+
+- Look at this again and make sure you can draw parrellel between accuracy and sensitivity / specificity
 
 ## Conclusions
