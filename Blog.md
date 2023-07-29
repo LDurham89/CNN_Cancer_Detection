@@ -18,9 +18,8 @@ To give you a better idea of what images are being used here, the figure below p
 
 <img src="/assets/class1.jpg" alt="cancerous images" width="750" height="200">
 
-
-- Show images and the chart of value counts
-<img src="/assets/value_counts.jpg" alt="cancerous images" width="750" height="200">
+The figure below shows the number of samples in each class. The data isn't perfectly balanced, although I believe there are enough examples of class 1 for the model to learn what a canverous smple looks like. Furthermore, the data is balanced enough that if the model were to predict the same label for every sample in the test data, this would be reflected in a poor performance metric.
+<img src="/assets/value_counts.jpg" alt="cancerous images" width="550" height="300">
 
 ## Methodology
 In this project I use a deep learning model that utilises Convolution Neural Networks (CNN's). A major advantage of working with CNN's is that they are the industry standard for computer vision and thus there are many tools predeicated on this method, with helpful documentation. Furthermore, they are designed specifically for image analysis. However, there are some alternative methods that I decided not to use.
