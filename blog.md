@@ -13,7 +13,7 @@ The original data consists of nearly 300,000 images and is around 4Gb in size. U
 A point to note here is that the data is organised by its author in a way that makes it easier to manage computationally, however the way this has been done means that each folder ID is not unique to one patient (see this post https://www.kaggle.com/datasets/paultimothymooney/breast-histopathology-images/discussion/137446) . As a result, this project doesn't try to draw any inferences about the patients sampled in this data, or pick out any demographic trends.
 
 To give you a better idea of what images are being used here, the figure below presents a few samples from each class:
-
+<img src="/docs/assets/FinalReviewPhrases.png" alt="bigrams table" width="500" height="300">
 
 
 - Show images and the chart of value counts
