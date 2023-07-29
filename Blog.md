@@ -20,7 +20,7 @@ To give you a better idea of what images are being used here, the figure below p
 
 
 - Show images and the chart of value counts
-
+<img src="/assets/value_counts.jpg" alt="cancerous images" width="750" height="200">
 
 ## Methodology
 In this project I use a deep learning model that utilises Convolution Neural Networks (CNN's). A major advantage of working with CNN's is that they are the industry standard for computer vision and thus there are many tools predeicated on this method, with helpful documentation. Furthermore, they are designed specifically for image analysis. However, there are some alternative methods that I decided not to use.
