@@ -22,7 +22,7 @@ To give you a better idea of what images are being used here, the figure below p
 - Show images and the chart of value counts
 
 
-## Method
+## Methodology
 In this project I use a deep learning model that utilises Convolution Neural Networks (CNN's). A major advantage of working with CNN's is that they are the industry standard for computer vision and thus there are many tools predeicated on this method, with helpful documentation. Furthermore, they are designed specifically for image analysis. However, there are some alternative methods that I decided not to use.
 
 -One option is to use Recurrent Neural Networks, however these are more appropriate for sequences of information (i.e. there is a temporal dimension). This is why they are frequently used for tasks such as translation - where the order of the information is crucial to its meaning - and analysing videos whereas my data consists of non-sequential photos. Recurrent Neural Networks are also slower than CNN's, which could be an issue given that my final model will use a lot of data.
@@ -30,14 +30,26 @@ In this project I use a deep learning model that utilises Convolution Neural Net
 
 I will then run several models to find the best parameters and model architecture. I will explain my thinking to justify modifications to model hyperparameters as I go through the iterations.¶
 
+- show base architecture and then describe what changes
+- Mention augmentation
+
 ## Metrics
 
 Why accuracy, what else could I have used?
 
 ## Model performance
-To evaluate these it would be tempting to present a chart showing the accuracy scores of each model, however this would miss the relationship between the training and validation data across across the model. While the accuracy scores have improved most (but not all) times that we've added complexity to the model the behaviour of the validation data has not been great in many of the models. In many models tha validation loss has plateaued very early on, while the loss on the training data has continued to fall, which suggests that the model is likely to be overfitting. In other models the validation loss and accuracy have been very volatile between epochs, or even increased after a certain point - again suggesting that the model is not to predict new data very well (check this).
+To evaluate the performance of the models it would be tempting to present a chart showing the accuracy scores of each model, however this would miss the relationship between the training and validation data for each model. While the accuracy scores have improved most (but not all) times that I've added complexity to the model the behaviour of the validation data has not been great in many of the models. In many models tha validation loss has plateaued very early on, while the loss on the training data has continued to fall, which suggests that the model is likely to be overfitting. 
+- Here is an example from an early itertion of the model
+  
+In other models the validation loss and accuracy have been very volatile between epochs, or even increased after a certain point - again suggesting that the model is not to predict new data very well (check this).
+
+- example
+- 
 Personally I am quite happy with model 9. It has an accuracy score of 0.85, meaning that it was able to predict 85% of labels in the test data correctly. Furthermore the loss and accuracy performance looks good, with both the validation and training loss decreasing across epochs and the validation loss plateauing much later than in other models - albeit the model was still probably trained for too many epochs. Conversely both training and validation accuracy scores increase relatively consistently - with the same caveat about the number of epochs.
+- Show below
+
 If we compare the performance of model 9 to some of other decent models, we can see that the validation loss / accuracy is nowhere near as volatile as for model 8, while it plateaus maybe 10 epochs later than model 7.
+
 In terms of application of the model, a quick googling brought up this article evaluating the performance of existing AI tools used to identify certain cancers.
 https://www.frontiersin.org/articles/10.3389/fmed.2022.1018937/full#:~:text=The%20sensitivity%20and%20specificity%20of,99.1)%20(Supplementary%20Figures).
 
