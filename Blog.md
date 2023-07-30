@@ -27,15 +27,15 @@ In this project I use a deep learning model that utilises Convolution Neural Net
 -One option is to use Recurrent Neural Networks, however these are more appropriate for sequences of information (i.e. there is a temporal dimension). This is why they are frequently used for tasks such as translation - where the order of the information is crucial to its meaning - and analysing videos whereas my data consists of non-sequential photos. Recurrent Neural Networks are also slower than CNN's, which could be an issue given that my final model will use a lot of data.
 -Restricted Boltzman models are another option that didn't seem appropriate for this task. This approach appears to be used more for modelling systems using unsupervised learning, although I understand that they can be used for classification tasks. With the data set used in this project labels are available, allowing us to train the model with supervised learning methods, which tend to be more accurate (if interested you can see the discussion here: https://www.ibm.com/cloud/blog/supervised-vs-unsupervised-learning#:~:text=While%20supervised%20learning%20models%20tend,weather%20conditions%20and%20so%20on.)
 
-To build a model I decided to start off with a simple base architecture and to then experiemtn with adding layers and tuning hyperparameters to find the best performing version of the model. Below is the base architecture
+To build a model I decided to start off with a simple base architecture and to then experiemtn with adding layers and tuning hyperparameters to find the best performing version of the model. Below is the base architecture:
 
-- show base architecture and then describe what changes
+<img src="/assets/model1_architecture_snippet.jpg" alt="model architecure" width ="400" height="300">
 
-After running the first iteration of my model I then decided to try and improive model performance by doing data augmentation. This is a process when you apply random alterations to the data - for example, you could rotate images, flip them or zoom in / out. The aim of this is to increase the amount of variation in the data, enabling the modle to see more examples of each class and focus less on irrelevant variables. In a way, this is a bit like how we humans learn - think of how diverse dogs are, yet we still manage to identify them correctly. Most people ave seen enough breeds of sog to not think that a dog is defined by a certain size or colour for example. For this project I decided to apply random flips, so the image could be flipped vertically, horizontally, or both ways.
+After running the first iteration of my model I then decided to try and improive model performance by doing data augmentation. This is a process when you apply random alterations to the data - for example, you could rotate images, flip them or zoom in / out. The aim of this is to increase the amount of variation in the data, enabling the modle to see more examples of each class and focus less on irrelevant variables. In a way, this is a bit like how we humans learn - think of how diverse dogs are, yet we still manage to identify them correctly. Most people have seen enough breeds of dog to not think that a dog is defined by a certain size or colour for example. For this project I decided to apply random flips, so the image could be flipped vertically, horizontally, or both ways. Below is an example of an image from the original data (top) and the same image after augmentation (below):
 
 - Examples
 
-After augmenting the data I experimented with adding convolutional layers and max pooling layers, introducing a batch size, changing the number of filters in the convolutional layer and removing the drop out layer.
+After augmenting the data I experimented with adding convolutional layers and max pooling layers, introducing a batch size, changing the number of filters in the convolutional layer and removing the drop-out layer.
 
 ## Metrics
 
@@ -66,3 +66,5 @@ Although they use the language of sensitivity and specificity rather than accura
 - Look at this again and make sure you can draw parrellel between accuracy and sensitivity / specificity
 
 ## Conclusions
+
+Convolutional neural networks are powerful tools for understanding image data and can provide vital tools for various tasks that require images to be interpreted. We have seen here that even a fairly simple model can provide a good starting point for developing tools that could be used in the real world.
