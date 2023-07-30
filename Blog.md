@@ -27,14 +27,23 @@ In this project I use a deep learning model that utilises Convolution Neural Net
 -One option is to use Recurrent Neural Networks, however these are more appropriate for sequences of information (i.e. there is a temporal dimension). This is why they are frequently used for tasks such as translation - where the order of the information is crucial to its meaning - and analysing videos whereas my data consists of non-sequential photos. Recurrent Neural Networks are also slower than CNN's, which could be an issue given that my final model will use a lot of data.
 -Restricted Boltzman models are another option that didn't seem appropriate for this task. This approach appears to be used more for modelling systems using unsupervised learning, although I understand that they can be used for classification tasks. With the data set used in this project labels are available, allowing us to train the model with supervised learning methods, which tend to be more accurate (if interested you can see the discussion here: https://www.ibm.com/cloud/blog/supervised-vs-unsupervised-learning#:~:text=While%20supervised%20learning%20models%20tend,weather%20conditions%20and%20so%20on.)
 
-I will then run several models to find the best parameters and model architecture. I will explain my thinking to justify modifications to model hyperparameters as I go through the iterations.¶
+To build a model I decided to start off with a simple base architecture and to then experiemtn with adding layers and tuning hyperparameters to find the best performing version of the model. Below is the base architecture
 
 - show base architecture and then describe what changes
-- Mention augmentation
+
+After running the first iteration of my model I then decided to try and improive model performance by doing data augmentation. This is a process when you apply random alterations to the data - for example, you could rotate images, flip them or zoom in / out. The aim of this is to increase the amount of variation in the data, enabling the modle to see more examples of each class and focus less on irrelevant variables. In a way, this is a bit like how we humans learn - think of how diverse dogs are, yet we still manage to identify them correctly. Most people ave seen enough breeds of sog to not think that a dog is defined by a certain size or colour for example. For this project I decided to apply random flips, so the image could be flipped vertically, horizontally, or both ways.
+
+- Examples
+
+After augmenting the data I experimented with adding convolutional layers and max pooling layers, introducing a batch size, changing the number of filters in the convolutional layer and removing the drop out layer.
 
 ## Metrics
 
-Why accuracy, what else could I have used?
+When looking at the performance of the models I used accuracy and loss as the main metrics. The accuracy score is the percentage of all predictions that are correct. For this metric I was seeking a score above 80% as a model being used for diagnosis purposes has to perform much better than a coin flip. Given this, I think that the accuracy metric is suitable for this data, given that the data is balance enough that a high accuracy score cannot be achieved by providing the same label for all predictions.
+
+I looked at the accuracy score that came from model.evaluate method, which uses the model to make predictions based on your X_test data and compare this to your Y_test data. This is informative as it tells us how well the model can generalise to data that is hasn't previously seen. However, as well as this I looked at the behaviour of the accuracy and loss metrics over the epochs of training. The behaviour across epochs can be very informative as it tells us how well the model is learning and also shows us if the model is overfitting.
+
+Once I has found the version of the model that had the highest accuracy I calculated an f1 score as an additional check. The f1 scores is a mean of the models precision and recall. The precision tells us the number of accurate predictions, while the recall tells us what proportion of true positives awere correctly identified by the model. This is a nice metric as it means that the model is punished for failing to identify relevant elements in each class. 
 
 ## Model performance
 To evaluate the performance of the models it would be tempting to present a chart showing the accuracy scores of each model, however this would miss the relationship between the training and validation data for each model. While the accuracy scores have improved most (but not all) times that I've added complexity to the model the behaviour of the validation data has not been great in many of the models. In many models tha validation loss has plateaued very early on, while the loss on the training data has continued to fall, which suggests that the model is likely to be overfitting. 
