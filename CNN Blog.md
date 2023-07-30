@@ -57,15 +57,17 @@ Below is an example from running the base architecture. As you can see the accur
 In other models the validation loss and accuracy have been very volatile between epochs, or even increased after a certain point - again suggesting that the model is not to predict new data very well (check this).
 
 Below is an example from running model 8, where the validation accuracy is very erratic between epochs.
-<img src="/assets/model8_accuracy.jpg" alt="model8 accuracy" width="550" height="300">
+<img src="/assets/model8_accuracy.JPG" alt="model8 accuracy" width="550" height="300">
   
 Personally I am quite happy with model 9. It has an accuracy score of 0.85, meaning that it was able to predict 85% of labels in the test data correctly. Furthermore the loss and accuracy performance looks good, with both the validation and training loss decreasing across epochs and the validation loss plateauing much later than in other models - albeit the model was still probably trained for too many epochs. Conversely both training and validation accuracy scores increase relatively consistently - with the same caveat about the number of epochs.
 
 - Show below - best model (i.e. 7)
+  
 <img src="/assets/model7_accuracy.jpg" alt="model7 accuracy" width="550" height="300">
 
 Similar behaviour is seen in the loss and validation loss functions
-<img src="/assets/model7_loss.jpg" alt="model7 loss" width="550" height="300">
+
+<img src="/assets/model7_loss.JPG" alt="model7 loss" width="550" height="300">
 
 If we compare the performance of model 9 to some of other decent models, we can see that the validation loss / accuracy is nowhere near as volatile as for model 8, while it plateaus maybe 10 epochs later than model 7.
 
