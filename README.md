@@ -31,7 +31,7 @@ If wish to run the notebook yourself this should be fairly simple. You will need
 
 Alternatively, if you just want to see my code and commentary you can just read through 'CNN project - final version.ipynb'.
 
-One thing to note is that if you chose to run the code you are unlikely to get exactly the same results as me. This is due to some randm steps in the deep learning process, as well as randomness introduced by the data augmentation process. I have used random_state arguments when defining training, test and validation data nin an effort to minimise variation - but this doesn't eliminate all randomness.
+One thing to note is that if you chose to run the code you are unlikely to get exactly the same results as me. This is due to some random steps in the deep learning process, as well as randomness introduced by the data augmentation process. I have used random_state arguments when defining training, test and validation data in an effort to minimise variation - but this doesn't eliminate all randomness.
 
 __Packages used:__ There are quite a few packages used in this project.
 
