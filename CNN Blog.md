@@ -50,15 +50,22 @@ Once I has found the version of the model that had the highest accuracy I calcul
 ## Model performance
 To evaluate the performance of the models it would be tempting to present a chart showing the accuracy scores of each model, however this would miss the relationship between the training and validation data for each model. While the accuracy scores have improved most (but not all) times that I've added complexity to the model the behaviour of the validation data has not been great in many of the models. In many models tha validation loss has plateaued very early on, while the loss on the training data has continued to fall, which suggests that the model is likely to be overfitting. 
 
-- Here is an example from model 1 
-  
+Below is an example from running the base architecture. As you can see the accuracy and validation accuracy diverge very early on, in a pattern that suggests that the model is overfitting to the data.
+
+<img src="/assets/model1_accuracy.jpg" alt="model1 accuracy" width="550" height="300">
+
 In other models the validation loss and accuracy have been very volatile between epochs, or even increased after a certain point - again suggesting that the model is not to predict new data very well (check this).
 
-- example
+Below is an example from running model 8, where the validation accuracy is very erratic between epochs.
+<img src="/assets/model8_accuracy.jpg" alt="model8 accuracy" width="550" height="300">
   
 Personally I am quite happy with model 9. It has an accuracy score of 0.85, meaning that it was able to predict 85% of labels in the test data correctly. Furthermore the loss and accuracy performance looks good, with both the validation and training loss decreasing across epochs and the validation loss plateauing much later than in other models - albeit the model was still probably trained for too many epochs. Conversely both training and validation accuracy scores increase relatively consistently - with the same caveat about the number of epochs.
 
 - Show below - best model (i.e. 7)
+<img src="/assets/model7_accuracy.jpg" alt="model7 accuracy" width="550" height="300">
+
+Similar behaviour is seen in the loss and validation loss functions
+<img src="/assets/model7_loss.jpg" alt="model7 loss" width="550" height="300">
 
 If we compare the performance of model 9 to some of other decent models, we can see that the validation loss / accuracy is nowhere near as volatile as for model 8, while it plateaus maybe 10 epochs later than model 7.
 
