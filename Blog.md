@@ -33,9 +33,11 @@ To build a model I decided to start off with a simple base architecture and to t
 
 After running the first iteration of my model I then decided to try and improive model performance by doing data augmentation. This is a process when you apply random alterations to the data - for example, you could rotate images, flip them or zoom in / out. The aim of this is to increase the amount of variation in the data, enabling the modle to see more examples of each class and focus less on irrelevant variables. In a way, this is a bit like how we humans learn - think of how diverse dogs are, yet we still manage to identify them correctly. Most people have seen enough breeds of dog to not think that a dog is defined by a certain size or colour for example. For this project I decided to apply random flips, so the image could be flipped vertically, horizontally, or both ways. Below is an example of an image from the original data (top) and the same image after augmentation (below):
 
-- Examples
+<img src="/assets/original_sample.jpg" width="200" height="200">
 
-After augmenting the data I experimented with adding convolutional layers and max pooling layers, introducing a batch size, changing the number of filters in the convolutional layer and removing the drop-out layer.
+<img src="/assets/augmented_sample.jpg" width="200" height="200">
+
+You can see that the same patterns are present in each image, but the bottom image in upside-down. After augmenting the data I experimented with adding additional convolutional layers and max pooling layers to the model architecure, introducing a batch size, changing the number of filters in the convolutional layer and removing the drop-out layer.
 
 ## Metrics
 
