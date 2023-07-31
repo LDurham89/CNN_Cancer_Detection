@@ -18,9 +18,9 @@ The end product is a jupyter notebook showing these steps and the logic behind t
 
 __File descriptions:___ 
 
-All of my python code is presented in the 'CNN project - final version.ipynb' file (available here: https://github.com/LDurham89/CNN_Cancer_Detection/blob/main/CNN%20project%20-%20final%20version.ipynb). This file is a notebook which also shows relevant visualisations and commentary.
+All of my python code is presented in the 'CNN project - Final.ipynb' file (available here: https://github.com/LDurham89/CNN_Cancer_Detection/blob/main/CNN%20project%20-%20Final.ipynb). This file is a notebook which also shows relevant visualisations and commentary.
 
-One fyi - and an apology - there are some commands that produce long lists which on my machine were confined to a small window whihc was easy to scroll past. However in the notebook presented here these lists are produced in full. As such you will need to do a lot of scrolling. If this is too tedious, then you might want to download the notebook so you can skip through. 
+One fyi - and an apology - there are some commands that produce long lists which on my machine were confined to a small window - making them easy to scroll past. However in the notebook presented here these lists are produced in full. As such you will need to do a lot of scrolling. If this is too tedious, then you might want to download the notebook so you can skip through. Please also note that sometimes the notebook doesn't render in github, so downloading might be the easier choice.
 
 The data used is taken from the kaggle page here: https://www.kaggle.com/datasets/paultimothymooney/breast-histopathology-images. The data consists of images, each showing a 50 x 50 pixel region from a breast scan. The original data consists of nearly 300,000 images and is around 4Gb in size. This is far too big for my machine to process in an acceptable amount of time, and so I created a much smaller smaple data set that would allow me to learn and compelte this project. This sample data is saved in this repository in a folder called 'Sample_data' (available here: https://github.com/LDurham89/CNN_Cancer_Detection/tree/main/Sample_data). This contains two subfolders (one for each pseudopatient), each of which also contains two subfolders(one for cancerous images and one for non-cancerous images), in which you can find the .png image files. Probably the best way to access the data is navigate to the root of the repository, then click on the green 'code' button, and download all the file files in the repo to your machine.
 
@@ -29,7 +29,7 @@ __Usage instructions:__
 
 If wish to run the notebook yourself this should be fairly simple. You will need to download the dataset to your own machine. You will then need to change the root_directory given in the notebook to the location where you save the data. All that's left is to hit 'run all' in the jupyter notebook. On my machine the whole notebook takes maybe two or three minutes to run.
 
-Alternatively, if you just want to see my code and commentary you can just read through 'CNN project - final version.ipynb'.
+Alternatively, if you just want to see my code and commentary you can just read through 'CNN project - Final.ipynb', or download the notebook.
 
 One thing to note is that if you chose to run the code you are unlikely to get exactly the same results as me. This is due to some random steps in the deep learning process, as well as randomness introduced by the data augmentation process. I have used random_state arguments when defining training, test and validation data in an effort to minimise variation - but this doesn't eliminate all randomness.
 
