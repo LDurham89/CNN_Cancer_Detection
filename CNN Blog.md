@@ -54,14 +54,12 @@ Below is an example from running the base architecture. As you can see the accur
 
 <img src="/assets/model1_accuracy.jpg" alt="model1 accuracy" width="550" height="300">
 
-In other models the validation loss and accuracy have been very volatile between epochs, or even increased after a certain point - again suggesting that the model is not to predict new data very well (check this).
+In other models the validation loss and accuracy have been very volatile between epochs, or even increased after a certain point - again suggesting that the model is not to predict new data very well.
 
 Below is an example from running model 8, where the validation accuracy is very erratic between epochs.
 <img src="/assets/model8_accuracy.JPG" alt="model8 accuracy" width="550" height="300">
   
-Personally I am quite happy with model 9. It has an accuracy score of 0.85, meaning that it was able to predict 85% of labels in the test data correctly. Furthermore the loss and accuracy performance looks good, with both the validation and training loss decreasing across epochs and the validation loss plateauing much later than in other models - albeit the model was still probably trained for too many epochs. Conversely both training and validation accuracy scores increase relatively consistently - with the same caveat about the number of epochs.
-
-- Show below - best model (i.e. 7)
+Personally I am quite happy with model 7. It has an accuracy score of 0.85, meaning that it was able to predict 85% of labels in the test data correctly. Furthermore the loss and accuracy performance looks good, with both the validation and training loss decreasing across epochs and the validation loss plateauing much later than in other models - albeit the model was still probably trained for too many epochs. Conversely both training and validation accuracy scores increase relatively consistently - with the same caveat about the number of epochs. This can be seen below:
   
 <img src="/assets/model7_accuracy.jpg" alt="model7 accuracy" width="550" height="300">
 
@@ -69,14 +67,12 @@ Similar behaviour is seen in the loss and validation loss functions
 
 <img src="/assets/model7_loss.JPG" alt="model7 loss" width="550" height="300">
 
-If we compare the performance of model 9 to some of other decent models, we can see that the validation loss / accuracy is nowhere near as volatile as for model 8, while it plateaus maybe 10 epochs later than model 7.
+If we compare the performance of model 7 to some of other decent models, we can see that the validation loss / accuracy is nowhere near as volatile as for model 8, while it plateaus maybe 10 epochs later than model 6.
 
 In terms of application of the model, a quick googling brought up this article evaluating the performance of existing AI tools used to identify certain cancers.
 https://www.frontiersin.org/articles/10.3389/fmed.2022.1018937/full#:~:text=The%20sensitivity%20and%20specificity%20of,99.1)%20(Supplementary%20Figures).
 
-Although they use the language of sensitivity and specificity rather than accuracy, the typical percentage scores they find are somewhere between the high 80's and low 90's. The result for model 9 is comparable to this, suggesting that if I were to apply it to the full data set the result might be clinically useful.
-
-- Look at this again and make sure you can draw parrellel between accuracy and sensitivity / specificity
+Although they look at sensitivity and specificity (and thus the ability to avoid false negative and false positives) rather than accuracy, the typical percentage scores they find are somewhere between the high 80's and low 90's. The result for model 7 is comparable to this, suggesting that if I were to apply it to the full data set the result might be clinically useful.
 
 ## Conclusions
 
