@@ -84,28 +84,32 @@ To build a model I decided to start off with a simple base architecture and to t
 ### Model evaluation & validation - mention the validation data, note how this allowed the gridsearch to identify a model with following hyperparams....
 
 ### Justification - will basically need a rewritten version of the text below
-Model performance
-To evaluate the performance of the models it would be tempting to present a chart showing the accuracy scores of each model, however this would miss the relationship between the training and validation data for each model. While the accuracy scores have improved most (but not all) times that I've added complexity to the model the behaviour of the validation data has not been great in many of the models. In many models tha validation loss has plateaued very early on, while the loss on the training data has continued to fall, which suggests that the model is likely to be overfitting.
+
+Start off focusing on the accuracy score and make a chart
+
+We can also evaluate the models by looking at the relationship between the training and validation data for each model. While the accuracy scores have improved most (but not all) times that I've added complexity to the model the behaviour of the validation data has not been great in some of the models. In these cases the validation loss has plateaued very early on, while the loss on the training data has continued to fall, which suggests that the model is likely to be overfitting. 
 
 Below is an example from running the base architecture. As you can see the accuracy and validation accuracy diverge very early on, in a pattern that suggests that the model is overfitting to the data.
 
-model1 accuracy
+<img src="/assets/model1_accuracy.jpg" alt="model1 accuracy" width="550" height="300">
 
 In other models the validation loss and accuracy have been very volatile between epochs, or even increased after a certain point - again suggesting that the model is not to predict new data very well.
 
-Below is an example from running model 8, where the validation accuracy is very erratic between epochs. model8 accuracy
-
+Below is an example from running model 8, where the validation accuracy is very erratic between epochs.
+<img src="/assets/model8_accuracy.JPG" alt="model8 accuracy" width="550" height="300">
+  
 Personally I am quite happy with model 7. It has an accuracy score of 0.85, meaning that it was able to predict 85% of labels in the test data correctly. Furthermore the loss and accuracy performance looks good, with both the validation and training loss decreasing across epochs and the validation loss plateauing much later than in other models - albeit the model was still probably trained for too many epochs. Conversely both training and validation accuracy scores increase relatively consistently - with the same caveat about the number of epochs. This can be seen below:
-
-model7 accuracy
+  
+<img src="/assets/model7_accuracy.jpg" alt="model7 accuracy" width="550" height="300">
 
 Similar behaviour is seen in the loss and validation loss functions
 
-model7 loss
+<img src="/assets/model7_loss.JPG" alt="model7 loss" width="550" height="300">
 
 If we compare the performance of model 7 to some of other decent models, we can see that the validation loss / accuracy is nowhere near as volatile as for model 8, while it plateaus maybe 10 epochs later than model 6.
 
-In terms of application of the model, a quick googling brought up this article evaluating the performance of existing AI tools used to identify certain cancers. https://www.frontiersin.org/articles/10.3389/fmed.2022.1018937/full#:~:text=The%20sensitivity%20and%20specificity%20of,99.1)%20(Supplementary%20Figures).
+In terms of application of the model, a quick googling brought up this article evaluating the performance of existing AI tools used to identify certain cancers.
+https://www.frontiersin.org/articles/10.3389/fmed.2022.1018937/full#:~:text=The%20sensitivity%20and%20specificity%20of,99.1)%20(Supplementary%20Figures).
 
 Although they look at sensitivity and specificity (and thus the ability to avoid false negative and false positives) rather than accuracy, the typical percentage scores they find are somewhere between the high 80's and low 90's. The result for model 7 is comparable to this, suggesting that if I were to apply it to the full data set the result might be clinically useful.
 
