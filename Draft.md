@@ -64,18 +64,33 @@ After running the first iteration of my model I then decided to try and improve 
 
 You can see that the same patterns are present in each image, but the bottom image in upside-down. After augmenting the data I experimented with adding additional convolutional layers and max pooling layers to the model architecure, introducing a batch size, changing the number of filters in the convolutional layer and removing the drop-out layer.
 
+Mention train-test and validation
+
 ### Implementation
 In this project I use a deep learning model that utilises Convolution Neural Networks (CNN's). A major advantage of working with CNN's is that they are the industry standard for computer vision and thus there are many tools predeicated on this method, with helpful documentation. Furthermore, they are designed specifically for image analysis. However, there are some alternative methods that I decided not to use.
 
 -One option is to use Recurrent Neural Networks, however these are more appropriate for sequences of information (i.e. there is a temporal dimension). This is why they are frequently used for tasks such as translation - where the order of the information is crucial to its meaning - and analysing videos whereas my data consists of non-sequential photos. Recurrent Neural Networks are also slower than CNN's, which could be an issue given that my final model will use a lot of data.
 -Restricted Boltzman models are another option that didn't seem appropriate for this task. This approach appears to be used more for modelling systems using unsupervised learning, although I understand that they can be used for classification tasks. With the data set used in this project labels are available, allowing us to train the model with supervised learning methods, which tend to be more accurate (if interested you can see the discussion here: https://www.ibm.com/cloud/blog/supervised-vs-unsupervised-learning#:~:text=While%20supervised%20learning%20models%20tend,weather%20conditions%20and%20so%20on.)
 
-# Let's briefly consider what a CNN does and how we can use it as the basis of a predictive model....
+Let's briefly consider what a CNN does and how we can use it as the basis of a predictive model. Below is a (pretty cute) illustration of the architecture used in this project (credit for the images goes to the author of this article: LINK). The main difference in my project is that I am solving a binary c;lassification problem rather than a mulitclass classification:
 
-To build a model I decided to start off with a simple base architecture and to then experiemtn with adding layers and tuning hyperparameters to find the best performing version of the model. Below is the base architecture:
+IMG
+
+As shown above we can consider our model to be made up of several parts:
+
+- An input (in this case an image)
+- A feature extraction stage
+- A learning stage
+- An output
+
+In the feature extraction stage we can use convolutional layers to apply filters to the image. These scan the image to pick out different types of pattern and create a feature map showing where these patterns are found. For example, one filter might search for vertical lines, the next for horizontal lines and the next for curves. These can then be combined in a way that lets the computer 'see' the main features of the image. We can then remove excess information by using max pooling layers. These do...
+Once the features are extracted we can flatten the features maps into a format that can be read by a neural network. Now, we're at the learning stage, where we carry out our classification task. We do this by passing our flattened array / vector of data to an Artificial Neural Network -represented by the dense layer in the model that I implemented. This takes the images and labels from the training data as inputs and uses these to calculate weights, which when applied to features in new images allows it to predict labels.
+
+To build a model I decided to start off with a simple base architecture and to then experiment with adding layers and tuning hyperparameters to find the best performing version of the model. Below is the base architecture:
 
 <img src="/assets/model1_architecture_snippet.jpg" alt="model architecure" width ="400" height="300">
 
+I then added convolutional and maxpooling layers until I felt that the accuracy scores that this was producing were good. I then tuned the hyperparameters using sci-kit learn's GridSearch CV...
 
 
 ### Refinement - here talk about experimenting with layers before then using gridsearch cv to refine model
