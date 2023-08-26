@@ -39,6 +39,7 @@ The original data consists of nearly 300,000 images and is around 4Gb in size. U
 A point to note here is that the data is organised by its author in a way that makes it easier to manage computationally, however the way this has been done means that each folder ID is not unique to one patient (see this post https://www.kaggle.com/datasets/paultimothymooney/breast-histopathology-images/discussion/137446) . As a result, this project doesn't try to draw any inferences about the patients sampled in this data, or pick out any demographic trends.
 
 As this data consists of images and correspondimg labels there is a limit to the amount of exploratory analysis hat can be done. One thing though that is useful to check is the distribution of the labels. The figure below shows the number of samples in each class. The data isn't perfectly balanced, although I believe there are enough examples of class 1 for the model to learn what a cancerous smple looks like. Furthermore, the data is balanced enough that if the model were to predict the same label for every sample in the test data, this would be reflected in a poor performance metric.
+
 <img src="/assets/value_counts.jpg" alt="cancerous images" width="550" height="300">
 
 ### Data Visualisation
@@ -64,7 +65,7 @@ After running the first iteration of my model I then decided to try and improve 
 
 You can see that the same patterns are present in each image, but the bottom image in upside-down. After augmenting the data I experimented with adding additional convolutional layers and max pooling layers to the model architecure, introducing a batch size, changing the number of filters in the convolutional layer and removing the drop-out layer.
 
-Mention train-test and validation
+#### Mention train-test and validation
 
 ### Implementation
 In this project I use a deep learning model that utilises Convolution Neural Networks (CNN's). A major advantage of working with CNN's is that they are the industry standard for computer vision and thus there are many tools predeicated on this method, with helpful documentation. Furthermore, they are designed specifically for image analysis. However, there are some alternative methods that I decided not to use.
@@ -95,7 +96,9 @@ I then incrementally added convolutional and maxpooling layers until I felt that
 
 
 ### Refinement - here talk about experimenting with layers before then using gridsearch cv to refine model
+GridSearchCV is a very cool feature provided by Sci-Kit Learn, which allows us to find the best combination of hyperparameters to use on our model. This is great as it provides a convenient and objective measure for the how well different sets of hyperparameters performs without requiring us to extensively test different model combinations based on intuition (although good intuition is needed to get the process off the ground).
 
+###What did i do?
 
 ## Section 4 - Results
 
