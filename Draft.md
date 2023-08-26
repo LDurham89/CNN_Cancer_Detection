@@ -72,9 +72,9 @@ In this project I use a deep learning model that utilises Convolution Neural Net
 -One option is to use Recurrent Neural Networks, however these are more appropriate for sequences of information (i.e. there is a temporal dimension). This is why they are frequently used for tasks such as translation - where the order of the information is crucial to its meaning - and analysing videos whereas my data consists of non-sequential photos. Recurrent Neural Networks are also slower than CNN's, which could be an issue given that my final model will use a lot of data.
 -Restricted Boltzman models are another option that didn't seem appropriate for this task. This approach appears to be used more for modelling systems using unsupervised learning, although I understand that they can be used for classification tasks. With the data set used in this project labels are available, allowing us to train the model with supervised learning methods, which tend to be more accurate (if interested you can see the discussion here: https://www.ibm.com/cloud/blog/supervised-vs-unsupervised-learning#:~:text=While%20supervised%20learning%20models%20tend,weather%20conditions%20and%20so%20on.)
 
-Let's briefly consider what a CNN does and how we can use it as the basis of a predictive model. Below is a (pretty cute) illustration of the architecture used in this project (credit for the images goes to the author of this article: LINK). The main difference in my project is that I am solving a binary c;lassification problem rather than a mulitclass classification:
+Let's briefly consider what a CNN does and how we can use it as the basis of a predictive model. Below is a (pretty cute) illustration of the architecture used in this project (credit for the images goes to the author of this article: https://www.analyticsvidhya.com/blog/2022/01/convolutional-neural-network-an-overview). The main difference in my project is that I am solving a binary classification problem rather than a multiclass classification one:
 
-IMG
+<img src="/assets/Tweety_cnn.jpg" alt="Tweety_cnn" width ="550" height="250">
 
 As shown above we can consider our model to be made up of several parts:
 
@@ -83,14 +83,15 @@ As shown above we can consider our model to be made up of several parts:
 - A learning stage
 - An output
 
-In the feature extraction stage we can use convolutional layers to apply filters to the image. These scan the image to pick out different types of pattern and create a feature map showing where these patterns are found. For example, one filter might search for vertical lines, the next for horizontal lines and the next for curves. These can then be combined in a way that lets the computer 'see' the main features of the image. We can then remove excess information by using max pooling layers. These do...
-Once the features are extracted we can flatten the features maps into a format that can be read by a neural network. Now, we're at the learning stage, where we carry out our classification task. We do this by passing our flattened array / vector of data to an Artificial Neural Network -represented by the dense layer in the model that I implemented. This takes the images and labels from the training data as inputs and uses these to calculate weights, which when applied to features in new images allows it to predict labels.
+In the feature extraction stage we can use convolutional layers to apply filters to the image. These filters scan each image to pick out different types of pattern and create a feature map showing where these patterns are found. For example, one filter might search for vertical lines, the next for horizontal lines and the next for curves. The neural network will initially use random filters, then use a loss function to identify the filters that best fit the patterns in the image. Depending on the complexity of the image we may need a lot of feature maps, which lead to high dimensionality and a risk of overfitting in the training stage. To overcome this, we can use Max Pooling layers. These take the feature maps as input and again apply a filter to the image. These filters simply take the largest value within each region of the image and use these to create a smaller representation of the information in the feature maps.
+
+Once the features are extracted we can flatten the features maps into a vectors that can be read by a dense layer. Now, we're at the learning stage, where we carry out our classification task. The first dense layer takes the flattened image vectors and labels from the training data as inputs and uses these to calculate weights, which when applied to features in new images allows it to predict labels. These weights are repeatedly predicted, evaluated against a loss function and updated in processes called Feedforward and Backpropagation. The second dense layer then uses a sigmoid activation function to return probabilities between 0 and 1, which can be rounded to provide the predicted label.
 
 To build a model I decided to start off with a simple base architecture and to then experiment with adding layers and tuning hyperparameters to find the best performing version of the model. Below is the base architecture:
 
 <img src="/assets/model1_architecture_snippet.jpg" alt="model architecure" width ="400" height="300">
 
-I then added convolutional and maxpooling layers until I felt that the accuracy scores that this was producing were good. I then tuned the hyperparameters using sci-kit learn's GridSearch CV...
+I then incrementally added convolutional and maxpooling layers until I felt that the resulting accuracy scores were good. I then tuned the hyperparameters using sci-kit learn's GridSearch CV...
 
 
 ### Refinement - here talk about experimenting with layers before then using gridsearch cv to refine model
