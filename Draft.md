@@ -65,11 +65,11 @@ After running the first iteration of my model I then decided to try and improve 
 
 You can see that the same patterns are present in each image, but the bottom image in upside-down. After augmenting the data I experimented with adding additional convolutional layers and max pooling layers to the model architecure, introducing a batch size, changing the number of filters in the convolutional layer and removing the drop-out layer.
 
-#### Before building my model, split the data into different sets to allow for better model results and incresed easwe of evaluation. I split the observations in my data as follows:
+Before building my model, I split the data into different sets to allow for better model results and incresed ease of evaluation. I split the observations in my data as follows:
 
 - Training data ( 56% of observations): This is the main bulk of the data, which is used in the process of fitting model hyperparameters and calculating weights.
 - Validation data ( 14% of observations): The model will aim to minimise a loss function with respect to the training data. In order to prevent overfitting, we can create a validation set against which the hyperparameters created by fitting on the training data are evaluated.
-- Test data (approx 30% of observations): Once we have a fitted model can evaluate its performance by seeing how well it can predicted values for data that it hasn't seen before. This unseen data is our test set. In this project I will use the model to predict values for the labels in the test data (Y_test) based on the images in the test set (X_test). We can then compare the predicted values of Y_test with the real (observed) values and evaluate the model using metrics such as accuracy or the f1 score.
+- Test data (approx 30% of observations): Once we have a fitted model can evaluate its performance by seeing how well it can predicted values for data that it hasn't seen before. This unseen data is our test set. In this project I will use the model to predict values for the labels in the test data (Y_test) based on the images in the test set (X_test). We can then compare the predicted values of Y_test against the real (observed) values and evaluate the model using metrics such as accuracy or the f1 score.
 
 ### Implementation
 In this project I use a deep learning model that utilises Convolution Neural Networks (CNN's). A major advantage of working with CNN's is that they are the industry standard for computer vision and thus there are many tools predeicated on this method, with helpful documentation. Furthermore, they are designed specifically for image analysis. However, there are some alternative methods that I decided not to use.
@@ -92,9 +92,9 @@ In the feature extraction stage we can use convolutional layers to apply filters
 
 <img src="/assets/filter_horiz_vert.png" alt="cnn filters" width="550" height="220">
 
-The neural network will initially use random filters, then use a loss function to identify the filters that best fit the patterns in the image. Depending on the complexity of the image we may need a lot of feature maps, which lead to high dimensionality and a risk of overfitting in the training stage. To overcome this, we can use Max Pooling layers. These take the feature maps as input and again apply a filter to the image. These filters simply take the largest value within each region of the image and use these to create a smaller representation of the information in the feature maps.
+The neural network will initially use random filters, then selects the filters that best fit the patterns in the image during a process called backpropagation. Depending on the complexity of the image we may need a lot of feature maps, which lead to high dimensionality and a risk of overfitting in the training stage. To reduce the dimensionality, we can use Max Pooling layers. These take the feature maps as input and again apply a filter to the image. These filters simply take the largest value within each region of the image and use these to create a smaller representation of the information in the feature maps. In our model we use a dropout layer to reduce the risk of overfitting. This is effectively a version of the dense layer where a random selection of nodes in the neural network are not activated, treating them as though they weren't in the network at all.
 
-Once the features are extracted we can flatten the features maps into a vectors that can be read by a dense layer. Now, we're at the learning stage, where we carry out our classification task. The first dense layer takes the flattened image vectors and labels from the training data as inputs and uses these to calculate weights, which when applied to features in new images allows it to predict labels. These weights are repeatedly predicted, evaluated against a loss function and updated in processes called Feedforward and Backpropagation. The second dense layer then uses a sigmoid activation function to return probabilities between 0 and 1, which can be rounded to provide the predicted label.
+Once the features are extracted we can flatten the features maps into a vectors that can be read by a dense layer. Now, we're at the learning stage, where we carry out our classification task. The first dense layer takes the flattened image vectors and labels from the training data as inputs and applies an optimization algorithm (in this case the 'Asam' optimizer) to these in order to calculate weights. The weights can then be used to predict labels in new images. These weights are repeatedly predicted, evaluated against a loss function and updated in processes called Feedforward and Backpropagation. The second dense layer then uses a sigmoid activation function to return probabilities between 0 and 1, which can be rounded to provide the predicted label.
 
 To build a model I decided to start off with a simple base architecture and to then experiment with adding layers and tuning hyperparameters to find the best performing version of the model. Below is the base architecture:
 
@@ -103,10 +103,21 @@ To build a model I decided to start off with a simple base architecture and to t
 I then incrementally added convolutional and maxpooling layers until I felt that the resulting accuracy scores were good. I then tuned the hyperparameters using sci-kit learn's GridSearch CV...
 
 
-### Refinement - here talk about experimenting with layers before then using gridsearch cv to refine model
-GridSearchCV is a very cool feature provided by Sci-Kit Learn, which allows us to find the best combination of hyperparameters to use on our model. This is great as it provides a convenient and objective measure for the how well different sets of hyperparameters performs without requiring us to extensively test different model combinations based on intuition (although good intuition is needed to get the process off the ground).
+### Refinement
 
-###What did i do?
+A few approaches were taken to refining the model used here. The first was to start off with a base architecture, to which I then added more layers to evaluate performance. While I was confident that Adam was the most appropriate optimizer for this model, I also tested the performance against the RMSprop optimizer. This will be discussed in more detail in the next section.
+
+While not strictly speaking a method of refinement, I also carried out data augmentation as discussed earlier in order to increase the amount of information within the data sets.
+
+The main tool I used for refinement was a cross-validation method called GridSearchCV. This is a very nice feature provided by Sci-Kit Learn, which allows us to find the best combination of hyperparameters to use on our model. Using GridSearchCV provides a convenient and objective measure for the how well different sets of hyperparameters performs without requiring us to extensively test different model combinations based on intuition (although good intuition is needed to get the process off the ground).
+
+I used GridSearchCV to find optimal values for:
+
+- The number and size of filters in the convolutional layers
+- Whether to allow padding in the Max Pooling layers (this refers to whether the filter is allowed to spill over the edge of the image. If it is not then we can potentially lose information from the edges of the image).
+- The batch size used when fitting the model.
+
+In the next section you will see the optimal parameters and how the tuned model performed in comparison to other versions of the model.
 
 ## Section 4 - Results
 
