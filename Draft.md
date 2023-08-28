@@ -122,7 +122,7 @@ In the next section you will see the optimal parameters and how the tuned model 
 ## Section 4 - Results
 
 ### Model evaluation & validation - mention the validation data, note how this allowed the gridsearch to identify a model with following hyperparams....
-
+Below is the architecture of the final model 
 ### Justification - will basically need a rewritten version of the text below
 
 Start off focusing on the accuracy score and make a chart
