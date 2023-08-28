@@ -88,7 +88,7 @@ As shown above we can consider our model to be made up of several parts:
 - A learning stage
 - An output
 
-In the feature extraction stage we can use convolutional layers to apply filters to the image. These filters are effectively small (relative to the image) matrices containing weights that spatially arranged to search for a given pattern. For example, in the image below the filter on the left searches for vertical lines, while the filter n the left searches for horizontal lines (image credit goes to the author of this article [LINK](https://www.analyticsvidhya.com/blog/2018/12/guide-convolutional-neural-network-cnn/). Other filters my search for more complex or abstract patterns. 
+In the feature extraction stage we can use convolutional layers to apply filters to the image. These filters are effectively small (relative to the image) matrices containing weights that spatially arranged to search for a given pattern. For example, in the image below the filter on the left searches for vertical lines, while the filter on the right searches for horizontal lines (image credit goes to the author of this article [LINK](https://www.analyticsvidhya.com/blog/2018/12/guide-convolutional-neural-network-cnn/). Other filters may search for more complex or abstract patterns. 
 
 <img src="/assets/filter_horiz_vert.png" alt="cnn filters" width="550" height="220">
 
