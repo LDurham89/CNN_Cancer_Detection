@@ -1,6 +1,6 @@
 # Using neural networks for medical diagnosis
 
-## Section1: Project Definition
+## Section 1: Project Definition
 
 ### Project Overview
 
@@ -29,8 +29,8 @@ I looked at the accuracy score that came from model.evaluate method, which uses 
 
 Once I has found the version of the model that had the highest accuracy I calculated an f1 score as an additional check. The f1 scores is a mean of the models precision and recall. The precision tells us the number of accurate predictions, while the recall tells us what proportion of true positives awere correctly identified by the model. This is a nice metric as it means that the model is punished for failing to identify relevant elements in each class.
 
+## Section 2: Analysis
 
-## Section2: Analysis
 ### Data Exploration
 This project will work with data on Invasive Ductal Carcinoma (IDC) -a form of breast cancer- taken from the kaggle page here: https://www.kaggle.com/datasets/paultimothymooney/breast-histopathology-images. The data consists of images, each showing a 50 x 50 pixel region from a breast scan. Images are classed as 0 for non-cancerous samples and 1 for cancerous samples. I will process the data for analysis and then build a model that can distinguish cancerous sub-samples from non-cancerous ones.
 
@@ -65,7 +65,11 @@ After running the first iteration of my model I then decided to try and improve 
 
 You can see that the same patterns are present in each image, but the bottom image in upside-down. After augmenting the data I experimented with adding additional convolutional layers and max pooling layers to the model architecure, introducing a batch size, changing the number of filters in the convolutional layer and removing the drop-out layer.
 
-#### Mention train-test and validation
+#### Before building my model, split the data into different sets to allow for better model results and incresed easwe of evaluation. I split the observations in my data as follows:
+
+- Training data ( 56% of observations): This is the main bulk of the data, which is used in the process of fitting model hyperparameters and calculating weights.
+- Validation data ( 14% of observations): The model will aim to minimise a loss function with respect to the training data. In order to prevent overfitting, we can create a validation set against which the hyperparameters created by fitting on the training data are evaluated.
+- Test data (approx 30% of observations): Once we have a fitted model can evaluate its performance by seeing how well it can predicted values for data that it hasn't seen before. This unseen data is our test set. In this project I will use the model to predict values for the labels in the test data (Y_test) based on the images in the test set (X_test). We can then compare the predicted values of Y_test with the real (observed) values and evaluate the model using metrics such as accuracy or the f1 score.
 
 ### Implementation
 In this project I use a deep learning model that utilises Convolution Neural Networks (CNN's). A major advantage of working with CNN's is that they are the industry standard for computer vision and thus there are many tools predeicated on this method, with helpful documentation. Furthermore, they are designed specifically for image analysis. However, there are some alternative methods that I decided not to use.
@@ -84,7 +88,11 @@ As shown above we can consider our model to be made up of several parts:
 - A learning stage
 - An output
 
-In the feature extraction stage we can use convolutional layers to apply filters to the image. These filters scan each image to pick out different types of pattern and create a feature map showing where these patterns are found. For example, one filter might search for vertical lines, the next for horizontal lines and the next for curves. The neural network will initially use random filters, then use a loss function to identify the filters that best fit the patterns in the image. Depending on the complexity of the image we may need a lot of feature maps, which lead to high dimensionality and a risk of overfitting in the training stage. To overcome this, we can use Max Pooling layers. These take the feature maps as input and again apply a filter to the image. These filters simply take the largest value within each region of the image and use these to create a smaller representation of the information in the feature maps.
+In the feature extraction stage we can use convolutional layers to apply filters to the image. These filters are effectively small (relative to the image) matrices containing weights that spatially arranged to search for a given pattern. For example, in the image below the filter on the left searches for vertical lines, while the filter n the left searches for horizontal lines (image credit goes to the author of this article [LINK](https://www.analyticsvidhya.com/blog/2018/12/guide-convolutional-neural-network-cnn/). Other filters my search for more complex or abstract patterns. 
+
+
+
+The neural network will initially use random filters, then use a loss function to identify the filters that best fit the patterns in the image. Depending on the complexity of the image we may need a lot of feature maps, which lead to high dimensionality and a risk of overfitting in the training stage. To overcome this, we can use Max Pooling layers. These take the feature maps as input and again apply a filter to the image. These filters simply take the largest value within each region of the image and use these to create a smaller representation of the information in the feature maps.
 
 Once the features are extracted we can flatten the features maps into a vectors that can be read by a dense layer. Now, we're at the learning stage, where we carry out our classification task. The first dense layer takes the flattened image vectors and labels from the training data as inputs and uses these to calculate weights, which when applied to features in new images allows it to predict labels. These weights are repeatedly predicted, evaluated against a loss function and updated in processes called Feedforward and Backpropagation. The second dense layer then uses a sigmoid activation function to return probabilities between 0 and 1, which can be rounded to provide the predicted label.
 
