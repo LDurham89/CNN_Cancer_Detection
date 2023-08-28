@@ -90,7 +90,7 @@ As shown above we can consider our model to be made up of several parts:
 
 In the feature extraction stage we can use convolutional layers to apply filters to the image. These filters are effectively small (relative to the image) matrices containing weights that spatially arranged to search for a given pattern. For example, in the image below the filter on the left searches for vertical lines, while the filter n the left searches for horizontal lines (image credit goes to the author of this article [LINK](https://www.analyticsvidhya.com/blog/2018/12/guide-convolutional-neural-network-cnn/). Other filters my search for more complex or abstract patterns. 
 
-
+<img src="/assets/filter_horiz_vert.jpg" alt="cnn filters" width="550" height="250">
 
 The neural network will initially use random filters, then use a loss function to identify the filters that best fit the patterns in the image. Depending on the complexity of the image we may need a lot of feature maps, which lead to high dimensionality and a risk of overfitting in the training stage. To overcome this, we can use Max Pooling layers. These take the feature maps as input and again apply a filter to the image. These filters simply take the largest value within each region of the image and use these to create a smaller representation of the information in the feature maps.
 
