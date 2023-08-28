@@ -105,7 +105,11 @@ I then incrementally added convolutional and maxpooling layers until I felt that
 
 ### Refinement
 
-A few approaches were taken to refining the model used here. The first was to start off with a base architecture, to which I then added more layers to evaluate performance. While I was confident that Adam was the most appropriate optimizer for this model, I also tested the performance against the RMSprop optimizer. This will be discussed in more detail in the next section.
+A few approaches were taken to refining the model used here. The first was to start off with a base architecture, to which I then added more layers to evaluate performance. Below is the base architecture:
+
+FIGURE
+
+While I was confident that Adam was the most appropriate optimizer for this model, ####Why?  I also tested the performance against the RMSprop optimizer. This will be discussed in more detail in the next section.
 
 While not strictly speaking a method of refinement, I also carried out data augmentation as discussed earlier in order to increase the amount of information within the data sets.
 
@@ -122,10 +126,30 @@ In the next section you will see the optimal parameters and how the tuned model 
 ## Section 4 - Results
 
 ### Model evaluation & validation - mention the validation data, note how this allowed the gridsearch to identify a model with following hyperparams....
-Below is the architecture of the final model 
+Below is the architecture of the final model:
+
+FIGURE
+
+Key features of this model:
+- It consists of two convolutional layers,
+- Two Max Pooling layers
+- A flatten layer
+- Two dense layers - COMMENT ON FIRST ONE
+- COMMENT IN SECOND ONE, BE CLEAR WHAT SIGMOID DOES
+- MAYBE A DROPOUT LAYER.
+- COMMENT activation function
+
+As mentioned, I took the model through several stages of refinement to find the best solution. Firstly, I took an iterative approach to including layers in the model, I test the use of Adam and rmsprop optimizers, added augmented data and used cross-validation methods to tune the hyperparameters of my model. I feel the at the resulting model is intuitive and performs well, as is discussed in more detail below.
+
 ### Justification - will basically need a rewritten version of the text below
 
-Start off focusing on the accuracy score and make a chart
+Let's look at the performance of the different iterations of the model that I have run.
+
+TABLE
+
+As we can see....
+
+
 
 We can also evaluate the models by looking at the relationship between the training and validation data for each model. While the accuracy scores have improved most (but not all) times that I've added complexity to the model the behaviour of the validation data has not been great in some of the models. In these cases the validation loss has plateaued very early on, while the loss on the training data has continued to fall, which suggests that the model is likely to be overfitting. 
 
