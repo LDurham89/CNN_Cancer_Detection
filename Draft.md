@@ -140,17 +140,17 @@ As mentioned, I took the model through several stages of refinement to find the 
 
 Let's look at the performance of the different iterations of the model that I have run.
 
-<img src="/assets/cnn_rsults_table.jpg" alt="table of accuracy scores" width ="400" height="300">
+<img src="/assets/cnn_rsults_table.JPG" alt="table of accuracy scores" width ="400" height="300">
 
 As we can see, the performance of the model has improved with each iteration of the model. By augmenting our data we were able to increase the amount of information contained in the dat set. Then by adding more convolutional and max pooling layers we were able to extract more of this information from the images. By using cross-validation and regularisation we were able to obtain the best hyperparameters for this model, but without overfitting to te training data, meaning that in the final iteration of the model it was possible to achieve an accuracy rate of 83% when attempting to predict the values in the test data.
 
 We can also evaluate the models by looking at the relationship between the training and validation data for each model. Ideally the accuracy scores for the training and validation data should increase over the course of training and be reasonably close together. The picture should be similar for the loss scores, except these should decline with throughout the learning process. In early iterations we do not see this, with the validation accuracy plateauing early on, which the accuracy score (for the training data) keeps increasing. You can see the accuracy across epochs of model 1 in the figure below. This suggests that model 1 performed relatively poorly on the test data as it was overfitting to the training data.
 
-FIGURE
+<img src="/assets/model1_accuracy.JPG" alt="model1 accuracy and validation accuracy" width ="400" height="250">
 
 As I added more complexity to the model the performance of the accuracy and loss scores gradually improved. For contrast with the performance in model one, I have included the accuracy history of model 6 below. You can see that is is much closer to the ideal described, although the validation accuracy is volatile in the earlier, both lines follow a clear upward trend, don't significantly diverge from each other and reach their peak in the final epoch of training.
 
-<img src="/assets/tuned_model_accuracy.jpg" alt="final model accuracy and validation accuracy" width ="400" height="300">
+<img src="/assets/tuned_model_accuracy.JPG" alt="final model accuracy and validation accuracy" width ="400" height="300">
   
 Personally I am quite happy with model 6. It has an accuracy score of 0.83, meaning that it was able to predict 83% of labels in the test data correctly.
 In terms of application of the model, a quick googling brought up this article evaluating the performance of existing AI tools used to identify certain cancers.
