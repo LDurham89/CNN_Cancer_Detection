@@ -35,7 +35,7 @@ __Usage instructions:__
 
 If wish to run the notebook yourself this should be fairly simple. You will need to download the dataset to your own machine. You will then need to change the root_directory given in the notebook to the location where you save the data. All that's left is to hit 'run all' in the jupyter notebook. On my machine the whole notebook takes maybe two or three minutes to run.
 
-Alternatively, if you just want to see my code and commentary you can just read through 'CNN project - Final.ipynb', or download the notebook.
+Alternatively, if you just want to see my code and commentary you can just read through 'Computer vision for medical diagnoses.ipynb'. Please note that sometimes this doesn't render in Github, so I'd advise downloading the notebook.
 
 One thing to note is that if you chose to run the code you are unlikely to get exactly the same results as me. This is due to some random steps in the deep learning process, as well as randomness introduced by the data augmentation process. I have used random_state arguments when defining training, test and validation data in an effort to minimise variation - but this doesn't eliminate all randomness.
 
