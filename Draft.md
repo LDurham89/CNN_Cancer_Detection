@@ -134,12 +134,10 @@ Key features of this model:
 - It consists of two convolutional layers,
 - Two Max Pooling layers
 - A flatten layer
-- Two dense layers - COMMENT ON FIRST ONE
-- COMMENT IN SECOND ONE, BE CLEAR WHAT SIGMOID DOES
-- MAYBE A DROPOUT LAYER.
-- COMMENT activation function
+- Two dense layers - the first of these layers where the learning process is carried out, weights are generated and a signmoid activation function return values between 0 and 1
+- A drop out layer - a tool to prevent overfitting by having a layer where a set fraction of nodes in the network are effectively switched of at random.
 
-As mentioned, I took the model through several stages of refinement to find the best solution. Firstly, I took an iterative approach to including layers in the model, I test the use of Adam and rmsprop optimizers, added augmented data and used cross-validation methods to tune the hyperparameters of my model. I feel the at the resulting model is intuitive and performs well, as is discussed in more detail below.
+As mentioned, I took the model through several stages of refinement to find the best solution. Firstly, I took an iterative approach to including layers in the model, added augmented data and then used cross-validation methods to tune the hyperparameters of my model. I feel that the resulting model is intuitive and performs well, as is discussed in more detail below.
 
 ### Justification - will basically need a rewritten version of the text below
 
@@ -147,15 +145,17 @@ Let's look at the performance of the different iterations of the model that I ha
 
 TABLE
 
-As we can see....
+As we can see, the perforance of the model has improved with each iteration of the model. By augmenting our data we were able to increase the maount of information contained in the dat set. Then by adding more convolutional and max pooling layers we were able to extract more of this information from the images. By using cross-validation and regularisation we were able to obtain the best hyperparameters for this model, but wothout overfitting, meaning that in the final iteration of the model it was possible to achieve an accuracy rate of 83% when attempting to predict the values in the test data.
 
 
 
-We can also evaluate the models by looking at the relationship between the training and validation data for each model. While the accuracy scores have improved most (but not all) times that I've added complexity to the model the behaviour of the validation data has not been great in some of the models. In these cases the validation loss has plateaued very early on, while the loss on the training data has continued to fall, which suggests that the model is likely to be overfitting. 
+We can also evaluate the models by looking at the relationship between the training and validation data for each model. Ideally the accuracy scores for the training and validation data should increase over the course of training and be reasonably close together. The picture should be similar for the loss scores, except these should decline with throughout the learning process. In early iterations we do not see this, with the validation accuracy plateauing early on, which the accuracy score (for the training data) keeps increasing. You can see the accuracy across epochs of model 1 in the figure below. This suggests that model 1 performed relatively poorly on the test data as it was overfitting to the training data.
 
-Below is an example from running the base architecture. As you can see the accuracy and validation accuracy diverge very early on, in a pattern that suggests that the model is overfitting to the data.
+FIGURE
 
-<img src="/assets/model1_accuracy.jpg" alt="model1 accuracy" width="550" height="300">
+As I added more complexity to the model, the performance of the accuracy and loss scores gradually improved. 
+
+
 
 In other models the validation loss and accuracy have been very volatile between epochs, or even increased after a certain point - again suggesting that the model is not to predict new data very well.
 
