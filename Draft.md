@@ -105,21 +105,18 @@ I then incrementally added convolutional and maxpooling layers until I felt that
 
 ### Refinement
 
-A few approaches were taken to refining the model used here. The first was to start off with a base architecture, to which I then added more layers to evaluate performance. Below is the base architecture:
-
-FIGURE
-
-While I was confident that Adam was the most appropriate optimizer for this model, ####Why?  I also tested the performance against the RMSprop optimizer. This will be discussed in more detail in the next section.
-
-While not strictly speaking a method of refinement, I also carried out data augmentation as discussed earlier in order to increase the amount of information within the data sets.
+A few approaches were taken to refining the model used here. The first was to start off with a base architecture, to which I then added more layers to evaluate performance. While not strictly speaking a method of refinement, I also carried out data augmentation as discussed earlier in order to increase the amount of information within the data sets.
 
 The main tool I used for refinement was a cross-validation method called GridSearchCV. This is a very nice feature provided by Sci-Kit Learn, which allows us to find the best combination of hyperparameters to use on our model. Using GridSearchCV provides a convenient and objective measure for the how well different sets of hyperparameters performs without requiring us to extensively test different model combinations based on intuition (although good intuition is needed to get the process off the ground).
 
 I used GridSearchCV to find optimal values for:
 
 - The number and size of filters in the convolutional layers
-- Whether to allow padding in the Max Pooling layers (this refers to whether the filter is allowed to spill over the edge of the image. If it is not then we can potentially lose information from the edges of the image).
 - The batch size used when fitting the model.
+
+I gave chosen not to pass the padding hyperparameter to GridSearchCV for two reasons. The first is that as you pass more hyperparameters to GridSearchCV it becomes exponentially more expensive to run computationally. The second reason is that I think there is good reason to allow the filters to spill over the edge of the image. From looking at the sample of images there does not appear to be a specific focus as such. As a result it appears that all regions of the image are informationally valuable. This is in contrast to an image with a defined region of interest or even a typical picture like a portrait, where the centre of the image is considerably more important than the edges.
+
+One potential issue with this form of cross-validation is that may return hyperparameters that lead to overfitting as it uses the same set of training and validation data for all combinations of hyperparameters. The prevent this I will also run the tuned model with regularisation on the first dense layer. Regularisation is a technique that imposes a penalty in the loss function for larger weights. This pushes the values of weights on less significant parameters towards (maybe actually reaching) zero - meaning that the resulting model will be more generalisable to new data. The technique I chose is called l1 (or lasso) regulation, which adds a penalty to the absolute (rather than squared values as is the case in l2 regularisation) value of the model weights. 
 
 In the next section you will see the optimal parameters and how the tuned model performed in comparison to other versions of the model.
 
@@ -139,43 +136,27 @@ Key features of this model:
 
 As mentioned, I took the model through several stages of refinement to find the best solution. Firstly, I took an iterative approach to including layers in the model, added augmented data and then used cross-validation methods to tune the hyperparameters of my model. I feel that the resulting model is intuitive and performs well, as is discussed in more detail below.
 
-### Justification - will basically need a rewritten version of the text below
+### Justification
 
 Let's look at the performance of the different iterations of the model that I have run.
 
 TABLE
 
-As we can see, the perforance of the model has improved with each iteration of the model. By augmenting our data we were able to increase the maount of information contained in the dat set. Then by adding more convolutional and max pooling layers we were able to extract more of this information from the images. By using cross-validation and regularisation we were able to obtain the best hyperparameters for this model, but wothout overfitting, meaning that in the final iteration of the model it was possible to achieve an accuracy rate of 83% when attempting to predict the values in the test data.
-
-
+As we can see, the performance of the model has improved with each iteration of the model. By augmenting our data we were able to increase the amount of information contained in the dat set. Then by adding more convolutional and max pooling layers we were able to extract more of this information from the images. By using cross-validation and regularisation we were able to obtain the best hyperparameters for this model, but without overfitting to te training data, meaning that in the final iteration of the model it was possible to achieve an accuracy rate of 83% when attempting to predict the values in the test data.
 
 We can also evaluate the models by looking at the relationship between the training and validation data for each model. Ideally the accuracy scores for the training and validation data should increase over the course of training and be reasonably close together. The picture should be similar for the loss scores, except these should decline with throughout the learning process. In early iterations we do not see this, with the validation accuracy plateauing early on, which the accuracy score (for the training data) keeps increasing. You can see the accuracy across epochs of model 1 in the figure below. This suggests that model 1 performed relatively poorly on the test data as it was overfitting to the training data.
 
 FIGURE
 
-As I added more complexity to the model, the performance of the accuracy and loss scores gradually improved. 
+As I added more complexity to the model the performance of the accuracy and loss scores gradually improved. For contrast with the performance in model one, I have included the accuracy history of model 6 below. You can see that is is much closer to the ideal described, although the validation accuracy is volatile in the earlier, both lines follow a clear upward trend, don't significantly diverge from each other and reach their peak in the final epoch of training.
 
-
-
-In other models the validation loss and accuracy have been very volatile between epochs, or even increased after a certain point - again suggesting that the model is not to predict new data very well.
-
-Below is an example from running model 8, where the validation accuracy is very erratic between epochs.
-<img src="/assets/model8_accuracy.JPG" alt="model8 accuracy" width="550" height="300">
+FIGURE
   
-Personally I am quite happy with model 7. It has an accuracy score of 0.85, meaning that it was able to predict 85% of labels in the test data correctly. Furthermore the loss and accuracy performance looks good, with both the validation and training loss decreasing across epochs and the validation loss plateauing much later than in other models - albeit the model was still probably trained for too many epochs. Conversely both training and validation accuracy scores increase relatively consistently - with the same caveat about the number of epochs. This can be seen below:
-  
-<img src="/assets/model7_accuracy.jpg" alt="model7 accuracy" width="550" height="300">
-
-Similar behaviour is seen in the loss and validation loss functions
-
-<img src="/assets/model7_loss.JPG" alt="model7 loss" width="550" height="300">
-
-If we compare the performance of model 7 to some of other decent models, we can see that the validation loss / accuracy is nowhere near as volatile as for model 8, while it plateaus maybe 10 epochs later than model 6.
-
+Personally I am quite happy with model 6. It has an accuracy score of 0.83, meaning that it was able to predict 83% of labels in the test data correctly.
 In terms of application of the model, a quick googling brought up this article evaluating the performance of existing AI tools used to identify certain cancers.
 https://www.frontiersin.org/articles/10.3389/fmed.2022.1018937/full#:~:text=The%20sensitivity%20and%20specificity%20of,99.1)%20(Supplementary%20Figures).
 
-Although they look at sensitivity and specificity (and thus the ability to avoid false negative and false positives) rather than accuracy, the typical percentage scores they find are somewhere between the high 80's and low 90's. The result for model 7 is comparable to this, suggesting that if I were to apply it to the full data set the result might be clinically useful.
+Although they look at sensitivity and specificity (and thus the ability to avoid false negative and false positives) rather than accuracy, the typical percentage scores they find are somewhere between the high 80's and low 90's. The result for model 6 is not far off of this, suggesting that if I were to apply it to the full data set the result might be clinically useful.
 
 ## Section 5:Conclusion
 ### Reflection
