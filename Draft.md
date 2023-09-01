@@ -125,7 +125,7 @@ In the next section you will see the optimal parameters and how the tuned model 
 ### Model evaluation & validation
 Below is the architecture of the final model:
 
-<img src="/assets/tuned_model__architecture_snippet.jpg" alt="final model architecure" width ="400" height="300">
+<img src="/assets/tuned_model_architecture.JPG" alt="final model architecure" width ="500" height="400">
 
 Key features of this model:
 - It consists of two convolutional layers,
@@ -140,7 +140,7 @@ As mentioned, I took the model through several stages of refinement to find the 
 
 Let's look at the performance of the different iterations of the model that I have run.
 
-<img src="/assets/cnn_rsults_table.JPG" alt="table of accuracy scores" width ="400" height="300">
+<img src="/assets/cnn_results_table.JPG" alt="table of accuracy scores" width ="400" height="300">
 
 As we can see, the performance of the model has improved with each iteration of the model. By augmenting our data we were able to increase the amount of information contained in the dat set. Then by adding more convolutional and max pooling layers we were able to extract more of this information from the images. By using cross-validation and regularisation we were able to obtain the best hyperparameters for this model, but without overfitting to te training data, meaning that in the final iteration of the model it was possible to achieve an accuracy rate of 83% when attempting to predict the values in the test data.
 
