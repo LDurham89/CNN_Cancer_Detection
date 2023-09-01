@@ -24,7 +24,7 @@ The end product is a jupyter notebook showing these steps and the logic behind t
 
 __File descriptions:___ 
 
-All of my python code is presented in the 'CNN project - Final.ipynb' file (available here: https://github.com/LDurham89/CNN_Cancer_Detection/blob/main/CNN%20project%20-%20Final.ipynb). This file is a notebook which also shows relevant visualisations and commentary.
+All of my python code is presented in the 'Computer vision for medical diagnoses.ipynb' file (available here: https://github.com/LDurham89/CNN_Cancer_Detection/blob/main/Computer%20vision%20for%20medical%20diagnoses.ipynb). This file is a notebook which also shows relevant visualisations and commentary.
 
 One fyi - and an apology - there are some commands that produce long lists which on my machine were confined to a small window - making them easy to scroll past. However in the notebook presented here these lists are produced in full. As such you will need to do a lot of scrolling. If this is too tedious, then you might want to download the notebook so you can skip through. Please also note that sometimes the notebook doesn't render in github, so downloading might be the easier choice.
 
