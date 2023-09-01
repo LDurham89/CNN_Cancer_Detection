@@ -94,7 +94,7 @@ In the feature extraction stage we can use convolutional layers to apply filters
 
 The neural network will initially use random filters, then selects the filters that best fit the patterns in the image during a process called backpropagation. Depending on the complexity of the image we may need a lot of feature maps, which lead to high dimensionality and a risk of overfitting in the training stage. To reduce the dimensionality, we can use Max Pooling layers. These take the feature maps as input and again apply a filter to the image. These filters simply take the largest value within each region of the image and use these to create a smaller representation of the information in the feature maps. In our model we use a dropout layer to reduce the risk of overfitting. This is effectively a version of the dense layer where a random selection of nodes in the neural network are not activated, treating them as though they weren't in the network at all.
 
-Once the features are extracted we can flatten the features maps into a vectors that can be read by a dense layer. Now, we're at the learning stage, where we carry out our classification task. The first dense layer takes the flattened image vectors and labels from the training data as inputs and applies an optimization algorithm (in this case the 'Asam' optimizer) to these in order to calculate weights. The weights can then be used to predict labels in new images. These weights are repeatedly predicted, evaluated against a loss function and updated in processes called Feedforward and Backpropagation. The second dense layer then uses a sigmoid activation function to return probabilities between 0 and 1, which can be rounded to provide the predicted label.
+Once the features are extracted we can flatten the features maps into a vectors that can be read by a dense layer. Now, we're at the learning stage, where we carry out our classification task. The first dense layer takes the flattened image vectors and labels from the training data as inputs and applies an optimization algorithm (in this case the 'Adam' optimizer) to these in order to calculate weights. The weights can then be used to predict labels in new images. These weights are repeatedly predicted, evaluated against a loss function and updated in processes called Feedforward and Backpropagation. The second dense layer then uses a sigmoid activation function to return probabilities between 0 and 1, which can be rounded to provide the predicted label.
 
 To build a model I decided to start off with a simple base architecture and to then experiment with adding layers and tuning hyperparameters to find the best performing version of the model. Below is the base architecture:
 
@@ -122,7 +122,7 @@ In the next section you will see the optimal parameters and how the tuned model 
 
 ## Section 4 - Results
 
-### Model evaluation & validation - mention the validation data, note how this allowed the gridsearch to identify a model with following hyperparams....
+### Model evaluation & validation
 Below is the architecture of the final model:
 
 FIGURE
@@ -162,4 +162,5 @@ Although they look at sensitivity and specificity (and thus the ability to avoid
 ### Reflection
 Convolutional neural networks are powerful tools for understanding image data and can provide vital tools for various tasks that require images to be interpreted. We have seen here that even a fairly simple model can provide a good starting point for developing tools that could be used in the real world.
 
-### Improvement - how could future attempt improve on this?
+### Improvement
+Ideally this project would have been run with a larger dataset, giving the neural network the opportuity to see more examples of each class in the training process.
