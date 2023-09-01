@@ -163,4 +163,4 @@ Although they look at sensitivity and specificity (and thus the ability to avoid
 Convolutional neural networks are powerful tools for understanding image data and can provide vital tools for various tasks that require images to be interpreted. We have seen here that even a fairly simple model can provide a good starting point for developing tools that could be used in the real world.
 
 ### Improvement
-Ideally this project would have been run with a larger dataset, giving the neural network the opportuity to see more examples of each class in the training process.
+Ideally this project would have been run with a larger dataset, giving the neural network the opportunity to see more examples of each class in the training process. As noted earlier, the images used here are slices from medical images. It could be useful to feed a model complete images and investigate using regions of interest to hone in on the most informative parts of the images.
